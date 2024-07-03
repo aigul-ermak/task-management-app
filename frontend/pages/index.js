@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import TaskList from "@/pages/tasks";
 
 export default function Home() {
     return (

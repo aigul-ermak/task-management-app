@@ -1,26 +1,25 @@
-export default function CreateTask() {
+import React from 'react';
+import TaskCreate from '../../components/tasks/taskCreate';
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
+const CreateTaskPage = () => {
+    const handleTaskCreated = (newTask) => {
+        console.log('Task created:', newTask);
+    };
+
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Create New Task</h1>
-            <form>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium">Title</label>
-                    <input type="text" className="w-full border px-4 py-2 rounded" />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium">Description</label>
-                    <textarea className="w-full border px-4 py-2 rounded"></textarea>
-                </div>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium">Status</label>
-                    <select className="w-full border px-4 py-2 rounded">
-                        <option value="pending">Pending</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Task</button>
-            </form>
+        <div className="flex flex-col min-h-screen">
+            <Header/>
+
+            <main className="flex-grow container mx-auto py-8">
+                <h1 className="text-2xl font-bold mb-4">Create Task</h1>
+                <TaskCreate onTaskCreated={handleTaskCreated} />
+            </main>
+
+            <Footer/>
         </div>
     );
-}
+};
+
+export default CreateTaskPage;
