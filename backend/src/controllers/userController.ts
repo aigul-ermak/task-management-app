@@ -50,21 +50,21 @@ export class UserController  {
     }
 
     async loginUser(req: Request, res: Response) {
-        // const { email, password } = req.body;
-        // try {
-        //     const user = this.userService.getUserByEmail(email);
-        //     if (!user) {
-        //         return res.sendStatus(400).json({ message: 'Invalid email or password' });
-        //     }
-        //     const isMatch = await user.comparePassword(password);
-        //     if (!isMatch) {
-        //         return res.sendStatus(400).json({ message: 'Invalid email or password' });
-        //     }
-        //     const token = user.generateToken();
-        //     res.status(200).json({ token });
-        // } catch (error) {
-        //     res.status(500).json({ message: error.message });
-        // }
+        const { email, password } = req.body;
+        try {
+            const user = await this.userService.getUserByEmail(email);
+            if (!user) {
+                return res.sendStatus(400).json({ message: 'Invalid email or password' });
+            }
+            const isMatch = await user.comparePassword(password);
+            if (!isMatch) {
+                return res.sendStatus(400).json({ message: 'Invalid email or password' });
+            }
+            const token = user.generateToken();
+            res.status(200).json({ token });
+        } catch (error) {
+            res.status(500);
+        }
     }
 
     async logoutUser(req: Request, res: Response) {
