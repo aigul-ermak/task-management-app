@@ -1,9 +1,23 @@
 import {TaskService} from "../services/taskService";
 import {Request, Response} from "express";
 import {TaskType} from "../types/taskType";
-import {TaskModel} from "../models/taskModel";
+import jwt from "jsonwebtoken";
+import {sendEmail} from "../services/mailerService";
 
 
+const getUserEmailFromToken = (req: Request): string | null => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) return null;
+
+    const token = authHeader.split(' ')[1];
+    try {
+        const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+        return decoded.email;
+    } catch (error) {
+        console.error('Failed to decode token:', error);
+        return null;
+    }
+};
 export class TaskController {
     constructor(protected taskService: TaskService) {
     }
@@ -49,6 +63,16 @@ export class TaskController {
             if (!task) {
                 res.status(404).json({message: 'Task not found'});
                 return;
+            }
+            const userEmail = getUserEmailFromToken(req);
+            if (userEmail) {
+                // Send email notification
+                await sendEmail(
+                    userEmail,
+                    'Task Updated',
+                    `The task has been updated.`,
+                    `<p>The task has been updated.</p>`
+                );
             }
             res.status(200).json(task);
         } catch (error) {
