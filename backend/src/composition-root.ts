@@ -17,5 +17,5 @@ const userService = new UserService(userRepo);
 const taskService = new TaskService(taskRepo);
 const projectService = new ProjectService(projectRepo);
 export const userController = new UserController(userService);
-export const taskController = new TaskController(taskService);
+export const taskController = new TaskController(taskService, userService);
 export const projectController = new ProjectController(projectService);
