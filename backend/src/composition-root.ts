@@ -6,5 +6,4 @@ import {UserController} from "./controllers/userController";
 const userRepo = new UserRepo();
 
 const userService = new UserService(userRepo);
-
 export const userController = new UserController(userService);

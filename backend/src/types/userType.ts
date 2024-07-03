@@ -4,11 +4,11 @@ export type UserType= {
     accountData: {
         login: string,
         email: string,
-        passwordHash: String,
+        passwordHash: string,
         createdAt: Date
     },
     emailConfirmation: {
-        confirmationCode: String,
-        isConfirmed: Boolean,
+        confirmationCode: string,
+        isConfirmed: boolean,
     }
 }

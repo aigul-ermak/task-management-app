@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 dotenv.config()
 
 const dbName = process.env.MONGO_DBName;
-const mongoURI = process.env.MONGO_URI || `mongodb://0.0.0.0:27017/${dbName}`;
+const mongoURI = process.env.MONGO_URI || `mongodb://0.0.0.0:27017/`;
 
-const fullMongoURI = `${mongoURI}/${dbName}?retryWrites=true&w=majority`;
+const fullMongoURI = `${mongoURI}/${dbName}`;
 
 export async function runDb() {
     try {
