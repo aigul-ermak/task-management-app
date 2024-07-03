@@ -8,4 +8,12 @@ export class UserService {
     async getUserByEmail(email: string): Promise<IUser | null> {
         return await this.userRepo.getUserByEmail(email);
     }
+
+    async getUsers(): Promise<IUser[]> {
+        return await this.userRepo.getUsers();
+    }
+
+    async getUser(id: string): Promise<IUser | null> {
+        return await this.userRepo.getUser(id);
+    }
 }

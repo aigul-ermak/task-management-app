@@ -14,12 +14,26 @@ export class UserController  {
 
     constructor(protected userService: UserService) {}
 
-    async getUser() {
-
+    async getUser(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const user = await this.userService.getUser(id);
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.status(200).json(user);
+        } catch (error) {
+            res.status(500);
+        }
     }
 
-    async getUsers() {
-
+    async getUsers(req: Request, res: Response) {
+        try {
+            const users = await this.userService.getUsers();
+            res.status(200).json(users);
+        } catch (error) {
+            res.status(500);
+        }
     }
 
     async registerUser(req: Request, res: Response) {
@@ -61,6 +75,7 @@ export class UserController  {
                 return res.sendStatus(400).json({ message: 'Invalid email or password' });
             }
             const token = user.generateToken();
+            res.cookie('token', token, { httpOnly: true });
             res.status(200).json({ token });
         } catch (error) {
             res.status(500);
@@ -68,6 +83,11 @@ export class UserController  {
     }
 
     async logoutUser(req: Request, res: Response) {
-
+        try {
+            res.clearCookie('token');
+            res.status(200);
+        } catch (error) {
+            res.status(500);
+        }
     }
 }
