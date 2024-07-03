@@ -1,13 +1,8 @@
 import Link from 'next/link';
-import {useState} from 'react';
+import {useAuth} from "@/context/authContext";
 
 export default function Header() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    const handleLogout = () => {
-        // logic
-        setIsAuthenticated(false);
-    };
+    const { isAuthenticated, logout } = useAuth();
 
     return (
         <header className="bg-indigo-800 text-white py-4">
@@ -28,7 +23,7 @@ export default function Header() {
                             </>
                         ) : (
                             <li>
-                                <button onClick={handleLogout} className="hover:underline">
+                                <button onClick={logout} className="hover:underline">
                                     Logout
                                 </button>
                             </li>
