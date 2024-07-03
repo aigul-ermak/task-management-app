@@ -9,11 +9,11 @@ export default function Header() {
             <div className="container mx-auto flex justify-between items-center">
                 <nav>
                     <ul className="flex space-x-4">
+                        <li>
+                            <Link href="/" className="hover:underline">Home </Link>
+                        </li>
                         {!isAuthenticated ? (
                             <>
-                                <li>
-                                    <Link href="/" className="hover:underline">Home </Link>
-                                </li>
                                 <li>
                                     <Link href="/register" className="hover:underline">Register</Link>
                                 </li>
