@@ -1,7 +1,8 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
-import { PROJECT_STATUS, ProjectType } from '../types/projectType';
+import mongoose, {Document, Schema, Model} from 'mongoose';
+import {PROJECT_STATUS, ProjectType} from '../types/projectType';
 
-export interface IProject extends ProjectType, Document {}
+export interface IProject extends ProjectType, Document {
+}
 
 const projectSchema: Schema = new mongoose.Schema<IProject>({
     name: {
