@@ -10,7 +10,7 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-gray-800 text-white py-4">
+        <header className="bg-indigo-800 text-white py-4">
             <div className="container mx-auto flex justify-between items-center">
                 <nav>
                     <ul className="flex space-x-4">
