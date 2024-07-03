@@ -5,7 +5,7 @@ export enum TASK_STATUS {
 }
 
 
-export type TaskType= {
+export type TaskType = {
     title: string;
     description: string;
     status: TASK_STATUS;

@@ -14,15 +14,15 @@ export class TaskRepo {
         return await TaskModel.find();
     }
 
-    async findById(taskId: string){
+    async findById(taskId: string) {
         return await TaskModel.findById(taskId);
     }
 
-    async updateById(taskId: string, taskData: Partial<TaskType>){
-        return await TaskModel.findByIdAndUpdate(taskId, taskData, { new: true });
+    async updateById(taskId: string, taskData: Partial<TaskType>) {
+        return await TaskModel.findByIdAndUpdate(taskId, taskData, {new: true});
     }
 
-    async deleteById(taskId: string)  {
+    async deleteById(taskId: string) {
         return await TaskModel.findByIdAndDelete(taskId);
     }
 }

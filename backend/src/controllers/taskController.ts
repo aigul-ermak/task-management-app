@@ -33,7 +33,7 @@ export class TaskController {
         try {
             const task = await this.taskService.getTaskById(req.params.id);
             if (!task) {
-                res.status(404).json({ message: 'Task not found' });
+                res.status(404).json({message: 'Task not found'});
                 return;
             }
             res.status(200).json(task);
@@ -47,7 +47,7 @@ export class TaskController {
             const taskData = req.body as Partial<TaskType>;
             const task = await this.taskService.updateTask(req.params.id, taskData);
             if (!task) {
-                res.status(404).json({ message: 'Task not found' });
+                res.status(404).json({message: 'Task not found'});
                 return;
             }
             res.status(200).json(task);
@@ -60,10 +60,10 @@ export class TaskController {
         try {
             const task = await this.taskService.deleteTask(req.params.id);
             if (!task) {
-                res.status(404).json({ message: 'Task not found' });
+                res.status(404).json({message: 'Task not found'});
                 return;
             }
-            res.status(200).json({ message: 'Task deleted successfully' });
+            res.status(200).json({message: 'Task deleted successfully'});
         } catch (error) {
             res.status(500);
         }

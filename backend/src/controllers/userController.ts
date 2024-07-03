@@ -2,24 +2,25 @@ import {UserService} from "../services/userService";
 import {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import {UserModel} from "../models/user";
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 
 const generateToken = (user: any) => {
-    return jwt.sign({ userId: user._id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    return jwt.sign({userId: user._id}, process.env.JWT_SECRET!, {expiresIn: '1h'});
 };
 
 
-export class UserController  {
+export class UserController {
 
-    constructor(protected userService: UserService) {}
+    constructor(protected userService: UserService) {
+    }
 
     async getUser(req: Request, res: Response) {
-        const { id } = req.params;
+        const {id} = req.params;
         try {
             const user = await this.userService.getUser(id);
             if (!user) {
-                return res.status(404).json({ message: 'User not found' });
+                return res.status(404).json({message: 'User not found'});
             }
             res.status(200).json(user);
         } catch (error) {
@@ -37,11 +38,11 @@ export class UserController  {
     }
 
     async registerUser(req: Request, res: Response) {
-        const { login, email, password } = req.body;
+        const {login, email, password} = req.body;
         try {
             const userExists = await this.userService.getUserByEmail(email);
             if (userExists) {
-                return res.status(400).json({ message: 'User already exists' });
+                return res.status(400).json({message: 'User already exists'});
             }
             const user = new UserModel({
                 accountData: {
@@ -57,26 +58,26 @@ export class UserController  {
             });
             await user.save();
             const token = user.generateToken();
-            res.status(201).json({ token });
+            res.status(201).json({token});
         } catch (error) {
             res.status(500);
         }
     }
 
     async loginUser(req: Request, res: Response) {
-        const { email, password } = req.body;
+        const {email, password} = req.body;
         try {
             const user = await this.userService.getUserByEmail(email);
             if (!user) {
-                return res.sendStatus(400).json({ message: 'Invalid email or password' });
+                return res.sendStatus(400).json({message: 'Invalid email or password'});
             }
             const isMatch = await user.comparePassword(password);
             if (!isMatch) {
-                return res.sendStatus(400).json({ message: 'Invalid email or password' });
+                return res.sendStatus(400).json({message: 'Invalid email or password'});
             }
             const token = user.generateToken();
-            res.cookie('token', token, { httpOnly: true });
-            res.status(200).json({ token });
+            res.cookie('token', token, {httpOnly: true});
+            res.status(200).json({token});
         } catch (error) {
             res.status(500);
         }

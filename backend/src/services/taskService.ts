@@ -11,7 +11,7 @@ export class TaskService {
         return await this.taskRepo.create(taskData);
     }
 
-    async getTasks(){
+    async getTasks() {
         return await this.taskRepo.findAll();
     }
 
