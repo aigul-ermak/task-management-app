@@ -133,9 +133,5 @@ dist
 .yarn/install-state.gz
 .pnp.*" > .gitignore
 
-# Add and commit the changes
-git add .gitignore
-git commit -m "Add .gitignore file based on application requirements"
-
-# Push the changes to the repository
-git push origin main
+.idea/
+../.idea/
