@@ -1,4 +1,8 @@
-# Logs
+# Navigate to your project root directory
+cd path/to/your/project
+
+# Create the .gitignore file
+echo "# Logs
 logs
 *.log
 npm-debug.log*
@@ -93,7 +97,7 @@ dist
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
+# Comment in the public line if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
@@ -127,4 +131,11 @@ dist
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
-.pnp.*
+.pnp.*" > .gitignore
+
+# Add and commit the changes
+git add .gitignore
+git commit -m "Add .gitignore file based on application requirements"
+
+# Push the changes to the repository
+git push origin main
