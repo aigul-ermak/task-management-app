@@ -10,6 +10,6 @@ const userRepo = new UserRepo();
 const taskRepo = new TaskRepo();
 
 const userService = new UserService(userRepo);
-const taskService = new TaskService(userRepo);
+const taskService = new TaskService(taskRepo);
 export const userController = new UserController(userService);
 export const taskController = new TaskController(taskService);

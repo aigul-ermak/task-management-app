@@ -10,5 +10,4 @@ export type TaskType= {
     description: string;
     status: TASK_STATUS;
     createdAt: Date;
-    updatedAt: Date;
 }
