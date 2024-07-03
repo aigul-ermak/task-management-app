@@ -1,4 +1,4 @@
-import mongoose, {Document, Schema} from 'mongoose';
+import mongoose, {Document, Model, Schema} from 'mongoose';
 import {TASK_STATUS, TaskType} from "../types/taskType";
 
 
@@ -25,6 +25,6 @@ const taskSchema: Schema = new mongoose.Schema<ITask>({
     },
 });
 
-export const TaskModel = mongoose.model<ITask>('Task', taskSchema);
+export const TaskModel: Model<ITask> = mongoose.model<ITask>('Task', taskSchema);
 
 
