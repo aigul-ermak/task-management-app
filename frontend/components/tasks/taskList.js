@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "@/utils/axios";
 import Task from './Task';
 import TaskCreate from './taskCreate';
@@ -34,9 +34,9 @@ const TaskList = () => {
     return (
         <div>
             <h1 className="text-2xl font-bold mb-4">Tasks</h1>
-            <TaskCreate onTaskCreated={handleTaskCreated} />
+            <TaskCreate onTaskCreated={handleTaskCreated}/>
             {tasks.map(task => (
-                <Task key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask} />
+                <Task key={task._id} task={task} onUpdate={handleUpdateTask} onDelete={handleDeleteTask}/>
             ))}
         </div>
     );

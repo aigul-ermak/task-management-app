@@ -88,6 +88,7 @@ export class TaskController {
     async deleteTask(req: Request, res: Response): Promise<void> {
         try {
             const task = await this.taskService.deleteTask(req.params.id);
+            console.log(req.params.id)
             if (!task) {
                 res.status(404).json({message: 'Task not found'});
                 return;
