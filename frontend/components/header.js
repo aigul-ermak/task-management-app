@@ -24,6 +24,12 @@ export default function Header() {
                         ) : (
                             <>
                                 <li>
+                                    <Link href="/tasks" className="hover:underline">Tasks</Link>
+                                </li>
+                                <li>
+                                    <Link href="/projects" className="hover:underline">Projects</Link>
+                                </li>
+                                <li>
                                     <Link href="/teams" className="hover:underline">Teams</Link>
                                 </li>
                                 <li>

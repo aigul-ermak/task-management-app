@@ -15,16 +15,6 @@ export default function Home() {
                 </h1>
 
                 <div className="text-center">
-                    <section className="mb-8">
-                        <h2 className="text-2xl font-bold mb-4">Tasks</h2>
-                        <Link href="/tasks" className="bg-blue-500 text-white px-4 py-2 rounded">View All Tasks </Link>
-                    </section>
-
-                    <section className="mb-8">
-                        <h2 className="text-2xl font-bold mb-4">Projects</h2>
-                        <Link href="/projects" className="bg-blue-500 text-white px-4 py-2 rounded">View All
-                            Projects </Link>
-                    </section>
 
                 </div>
 

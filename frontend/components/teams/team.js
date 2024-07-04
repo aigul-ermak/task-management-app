@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '@/utils/axios';
 
-const Team = ({ team, onUpdate, onDelete }) => {
+const Team = ({team, onUpdate, onDelete}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(team.name);
     const [members, setMembers] = useState(team.members);
@@ -26,7 +26,7 @@ const Team = ({ team, onUpdate, onDelete }) => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('/users');
+            const response = await axios.get('/users/users');
             setUsers(response.data);
         } catch (error) {
             console.error('Failed to fetch users:', error);
@@ -35,7 +35,7 @@ const Team = ({ team, onUpdate, onDelete }) => {
 
     const handleUpdate = async () => {
         try {
-            const response = await axios.put(`/teams/${team._id}`, { name, members, project: selectedProject });
+            const response = await axios.put(`/teams/${team._id}`, {name, members, project: selectedProject});
             onUpdate(response.data);
             setIsEditing(false);
         } catch (error) {
@@ -72,7 +72,7 @@ const Team = ({ team, onUpdate, onDelete }) => {
     };
 
     return (
-        <div className="border text-white bg-blue-500 p-4 mb-2">
+        <div className="border text-white bg-gray-400 p-4 mb-2">
             {isEditing ? (
                 <>
                     <input
@@ -106,7 +106,7 @@ const Team = ({ team, onUpdate, onDelete }) => {
                             <option value="">Select a user</option>
                             {users.map((user) => (
                                 <option key={user._id} value={user._id}>
-                                    {user.name}
+                                    {user.accountData.email}
                                 </option>
                             ))}
                         </select>
@@ -127,19 +127,20 @@ const Team = ({ team, onUpdate, onDelete }) => {
                     <ul>
                         {members.map((member) => (
                             <li key={member._id}>
-                                {member.name}
-                                <button onClick={() => handleRemoveMember(member._id)} className="bg-red-500 text-white px-2 py-1 ml-2 rounded">
-                                    Remove
-                                </button>
+                                {member.accountData.email}
+                                {/*<button onClick={() => handleRemoveMember(member._id)} className="bg-red-500 text-white px-2 py-1 ml-2 rounded">*/}
+                                {/*    Remove*/}
+                                {/*</button>*/}
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => setIsEditing(true)} className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+                    <button onClick={() => setIsEditing(true)}
+                            className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                         Edit
                     </button>
-                    <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded">
-                        Delete
-                    </button>
+                    {/*<button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded">*/}
+                    {/*    Delete*/}
+                    {/*</button>*/}
                 </>
             )}
         </div>

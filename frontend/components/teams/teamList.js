@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '@/utils/axios';
 import Team from './Team';
 import TeamCreate from './TeamCreate';
@@ -34,9 +34,9 @@ const TeamList = () => {
     return (
         <div>
             <h1 className="text-2xl font-bold mb-4">Teams</h1>
-            <TeamCreate onTeamCreated={handleTeamCreated} />
+            <TeamCreate onTeamCreated={handleTeamCreated}/>
             {teams.map(team => (
-                <Team key={team._id} team={team} onUpdate={handleTeamUpdated} onDelete={handleTeamDeleted} />
+                <Team key={team._id} team={team} onUpdate={handleTeamUpdated} onDelete={handleTeamDeleted}/>
             ))}
         </div>
     );

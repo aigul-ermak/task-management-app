@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '@/utils/axios';
 import {log} from "next/dist/server/typescript/utils";
 
-const TeamCreate = ({ onTeamCreated }) => {
+const TeamCreate = ({onTeamCreated}) => {
     const [name, setName] = useState('');
     const [project, setProject] = useState('');
     const [selectedMembers, setSelectedMembers] = useState([]);
@@ -34,7 +34,7 @@ const TeamCreate = ({ onTeamCreated }) => {
 
     const handleCreateTeam = async () => {
         try {
-            const response = await axios.post('/teams', { name, project, members: selectedMembers });
+            const response = await axios.post('/teams', {name, project, members: selectedMembers});
             onTeamCreated(response.data);
             setName('');
             setProject('');

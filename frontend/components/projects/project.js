@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import axios from '@/utils/axios';
 
-const Project = ({ project, onUpdate, onDelete }) => {
+const Project = ({project, onUpdate, onDelete}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(project.name);
     const [description, setDescription] = useState(project.description);
@@ -9,7 +9,7 @@ const Project = ({ project, onUpdate, onDelete }) => {
 
     const handleUpdate = async () => {
         try {
-            const response = await axios.put(`/projects/${project._id}`, { name, description, status });
+            const response = await axios.put(`/projects/${project._id}`, {name, description, status});
             onUpdate(response.data);
             setIsEditing(false);
         } catch (error) {
@@ -27,7 +27,7 @@ const Project = ({ project, onUpdate, onDelete }) => {
     };
 
     return (
-        <div className="border text-white bg-red-500 p-4 mb-2">
+        <div className="border text-white p-4 mb-2">
             {isEditing ? (
                 <>
                     <input
@@ -64,7 +64,8 @@ const Project = ({ project, onUpdate, onDelete }) => {
                     <h2 className="text-xl">{project.name}</h2>
                     <p>{project.description}</p>
                     <p>{project.status}</p>
-                    <button onClick={() => setIsEditing(true)} className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+                    <button onClick={() => setIsEditing(true)}
+                            className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                         Edit
                     </button>
                     <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded">
