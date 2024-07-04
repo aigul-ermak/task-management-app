@@ -3,6 +3,5 @@ export type TeamType = {
     project: string;
     members: string[];
     createdAt: Date;
-    updatedAt: Date;
 }
 

@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import {userRoutes} from "../routes/userRoutes";
 import {taskRoutes} from "../routes/taskRoutes";
 import {projectRoutes} from "../routes/projectRoutes";
+import {teamRoutes} from "../routes/teamRoutes";
 
 export const configApp = () => {
     const app = express();
@@ -20,6 +21,7 @@ export const configApp = () => {
     app.use('/users', userRoutes);
     app.use('/tasks', taskRoutes);
     app.use('/projects', projectRoutes);
+    app.use('/teams', teamRoutes);
 
     return app;
 };

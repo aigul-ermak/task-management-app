@@ -8,8 +8,7 @@ const teamSchema: Schema = new Schema({
     name: {type: String, required: true},
     project: {type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true},
     members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    createdAt: {type: Date, default: Date.now},
-    updatedAt: {type: Date, default: Date.now}
+    createdAt: {type: Date, default: Date.now}
 });
 
 export const TeamModel: Model<ITeam> = mongoose.model<ITeam>('Team', teamSchema);
