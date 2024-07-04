@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import axios from "@/utils/axios";
 import {useAuth} from "@/context/authContext";
 import {useRouter} from "next/router";
@@ -7,11 +7,11 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [login, setLogin] = useState('');
-    const { login: authLogin } = useAuth();
+    const {login: authLogin} = useAuth();
     const router = useRouter();
     const handleRegister = async () => {
         try {
-            const response = await axios.post('/users/registration', { login, email, password });
+            const response = await axios.post('/users/registration', {login, email, password});
             console.log('Response:', response);
             if (response.status === 201) {
                 authLogin();

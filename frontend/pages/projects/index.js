@@ -1,17 +1,22 @@
-import Link from 'next/link';
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import ProjectList from "@/components/projects/projectList";
+import React from 'react';
+import TasksPage from "@/pages/tasks";
 
-export default function ProjectList() {
+const ProjectsPage = () => {
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Projects</h1>
-            <a href="/projects/create" className="bg-blue-500 text-white px-4 py-2 rounded">Create Project</a>
-            <ul className="mt-4">
-                <li className="border p-4 mb-2">
-                    <h2 className="text-xl">Project Title</h2>
-                    <p>Project Description</p>
-                    <a className="text-blue-500">View Details</a>
-                </li>
-            </ul>
+        <div className="flex flex-col min-h-screen">
+            <Header/>
+
+            <main className="flex-grow container mx-auto py-8">
+                <ProjectList/>
+            </main>
+
+            <Footer/>
         </div>
     );
-}
+};
+
+
+export default ProjectsPage;

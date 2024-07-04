@@ -1,19 +1,22 @@
-export default function CreateProject() {
-    return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Create New Project</h1>
-            <form>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium">Title</label>
-                    <input type="text" className="w-full border px-4 py-2 rounded" />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium">Description</label>
-                    <textarea className="w-full border px-4 py-2 rounded"></textarea>
-                </div>
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import ProjectCreate from "@/components/projects/projectCreate";
 
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Project</button>
-            </form>
+const CreateProjectPage = () => {
+    const handleProjectCreated = (newProject) => {
+        console.log('Project created:', newProject);
+    };
+
+    return (
+        <div className="container mx-auto p-4">
+            <Header/>
+
+            <h1 className="text-2xl font-bold mb-4">Create Project</h1>
+            <ProjectCreate onProjectCreated={handleProjectCreated}/>
+
+            <Footer/>
         </div>
     );
-}
+};
+
+export default ProjectCreatePage;
