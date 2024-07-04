@@ -4,6 +4,7 @@ import {TaskType} from "../types/taskType";
 import jwt from "jsonwebtoken";
 import {sendEmail} from "../services/mailerService";
 import {UserService} from "../services/userService";
+import {broadcast} from "../index";
 
 
 const getUserIdFromToken = (req: Request): string | null => {
@@ -28,6 +29,7 @@ export class TaskController {
         try {
             const taskData = req.body as TaskType;
             const task = await this.taskService.createTask(taskData);
+            broadcast({ event: 'taskCreated', task });
             res.status(201).json(task);
         } catch (error) {
             res.status(500);
@@ -79,7 +81,7 @@ export class TaskController {
                     );
                 }
             }
-
+            broadcast({ event: 'taskUpdated', task });
             res.status(200).json(task);
         } catch (error) {
             res.status(500);
@@ -94,6 +96,7 @@ export class TaskController {
                 res.status(404).json({message: 'Task not found'});
                 return;
             }
+            broadcast({ event: 'taskDeleted', taskId: req.params.id });
             res.status(200).json({message: 'Task deleted successfully'});
         } catch (error) {
             res.status(500);

@@ -65,18 +65,4 @@ export class ProjectController {
             res.status(500);
         }
     }
-
-    async assignUserToProject(req: Request, res: Response): Promise<void> {
-        try {
-            const {projectId, userId} = req.params;
-            const project = await this.projectService.assignUserToProject(projectId, userId);
-            if (!project) {
-                res.status(404).json({message: 'Project not found'});
-                return;
-            }
-            res.status(200).json(project);
-        } catch (error) {
-            res.status(500);
-        }
-    }
 }
