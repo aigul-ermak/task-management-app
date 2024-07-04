@@ -1,6 +1,7 @@
 import {runDb} from "./config/db";
 import {app} from "./app";
-
+import { WebSocketServer, WebSocket } from 'ws';
+import {createServer} from "http";
 const port = process.env.PORT || 3000;
 
 const server = createServer(app);

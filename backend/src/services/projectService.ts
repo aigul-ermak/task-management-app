@@ -26,7 +26,4 @@ export class ProjectService {
         return await this.projectRepo.deleteById(projectId);
     }
 
-    async assignUserToProject(projectId: string, userId: string) {
-        return await this.projectRepo.assignUser(projectId, userId);
-    }
 }

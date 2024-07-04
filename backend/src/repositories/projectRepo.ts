@@ -26,11 +26,4 @@ export class ProjectRepo {
         return await ProjectModel.findByIdAndDelete(projectId);
     }
 
-    async assignUser(projectId: string, userId: string) {
-        return ProjectModel.findByIdAndUpdate(
-            projectId,
-            {$addToSet: {assignedUsers: userId}},
-            {new: true}
-        );
-    }
 }
