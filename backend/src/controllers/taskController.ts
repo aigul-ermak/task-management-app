@@ -19,6 +19,7 @@ const getUserIdFromToken = (req: Request): string | null => {
         return null;
     }
 };
+
 export class TaskController {
     constructor(protected taskService: TaskService, protected userService: UserService) {
     }
@@ -66,7 +67,7 @@ export class TaskController {
                 return;
             }
             const userId = getUserIdFromToken(req);
-            if(userId !== null) {
+            if (userId !== null) {
                 const user = await this.userService.getUser(userId)
                 console.log(user!.accountData.email)
                 if (user && user.accountData.email) {
