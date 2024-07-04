@@ -4,6 +4,11 @@ import {useAuth} from "@/context/authContext";
 export default function Header() {
     const {isAuthenticated, logout} = useAuth();
 
+    const handleLogout = () => {
+        logout();
+
+    };
+
     return (
         <header className="bg-indigo-800 text-white py-4">
             <div className="container mx-auto flex justify-between items-center">
@@ -33,7 +38,7 @@ export default function Header() {
                                     <Link href="/teams" className="hover:underline">Teams</Link>
                                 </li>
                                 <li>
-                                    <button onClick={logout} className="hover:underline">
+                                    <button onClick={handleLogout} className="hover:underline">
                                         Logout
                                     </button>
                                 </li>

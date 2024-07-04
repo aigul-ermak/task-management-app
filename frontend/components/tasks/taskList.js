@@ -2,13 +2,17 @@ import React, {useState, useEffect} from 'react';
 import axios from "@/utils/axios";
 import Task from './Task';
 import TaskCreate from './taskCreate';
+import { useAuth } from "@/context/authContext";
 
 const TaskList = () => {
+    const { isAuthenticated } = useAuth();
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        fetchTasks();
-    }, []);
+        if (isAuthenticated) {
+            fetchTasks();
+        }
+    }, [isAuthenticated]);
 
     const fetchTasks = async () => {
         try {
@@ -30,6 +34,10 @@ const TaskList = () => {
     const handleDeleteTask = (taskId) => {
         setTasks(tasks.filter(task => task._id !== taskId));
     };
+
+    if (!isAuthenticated) {
+        return <p>Please log in to view tasks.</p>;
+    }
 
     return (
         <div>

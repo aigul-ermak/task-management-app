@@ -2,13 +2,17 @@ import React, {useState, useEffect} from 'react';
 import axios from '@/utils/axios';
 import Team from './Team';
 import TeamCreate from './TeamCreate';
+import { useAuth } from "@/context/authContext";
 
 const TeamList = () => {
+    const { isAuthenticated } = useAuth();
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-        fetchTeams();
-    }, []);
+        if (isAuthenticated) {
+            fetchTeams();
+        }
+    }, [isAuthenticated]);
 
     const fetchTeams = async () => {
         try {
@@ -30,6 +34,10 @@ const TeamList = () => {
     const handleTeamDeleted = (teamId) => {
         setTeams(teams.filter(team => team._id !== teamId));
     };
+
+    if (!isAuthenticated) {
+        return <p>Please log in to view teams.</p>;
+    }
 
     return (
         <div>

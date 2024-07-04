@@ -2,13 +2,17 @@ import React, {useState, useEffect} from 'react';
 import axios from '@/utils/axios';
 import Project from './Project';
 import ProjectCreate from './ProjectCreate';
+import { useAuth } from "@/context/authContext";
 
 const ProjectList = () => {
+    const { isAuthenticated } = useAuth();
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        fetchProjects();
-    }, []);
+        if (isAuthenticated) {
+            fetchProjects();
+        }
+    }, [isAuthenticated]);
 
     const fetchProjects = async () => {
         try {
@@ -30,6 +34,10 @@ const ProjectList = () => {
     const handleDeleteProject = (projectId) => {
         setProjects(projects.filter(project => project._id !== projectId));
     };
+
+    if (!isAuthenticated) {
+        return <p>Please log in to view projects.</p>;
+    }
 
     return (
         <div className="text-black">
