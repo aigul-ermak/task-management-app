@@ -7,11 +7,23 @@ import { useAuth } from "@/context/authContext";
 const TaskList = () => {
     const { isAuthenticated } = useAuth();
     const [tasks, setTasks] = useState([]);
+    const [ws, setWs] = useState(null);
 
     useEffect(() => {
         if (isAuthenticated) {
             fetchTasks();
+            const ws = new WebSocket('ws://localhost:3000');
+            ws.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                handleWebSocketMessage(message);
+            };
+            setWs(ws);
         }
+        return () => {
+            if (ws) {
+                ws.close();
+            }
+        };
     }, [isAuthenticated]);
 
     const fetchTasks = async () => {
@@ -20,6 +32,24 @@ const TaskList = () => {
             setTasks(response.data);
         } catch (error) {
             console.error('Failed to fetch tasks:', error);
+        }
+    };
+
+    const handleWebSocketMessage = (message) => {
+        switch (message.event) {
+            case 'taskCreated':
+                setTasks((prevTasks) => [...prevTasks, message.task]);
+                break;
+            case 'taskUpdated':
+                setTasks((prevTasks) =>
+                    prevTasks.map((task) => (task._id === message.task._id ? message.task : task))
+                );
+                break;
+            case 'taskDeleted':
+                setTasks((prevTasks) => prevTasks.filter((task) => task._id !== message.taskId));
+                break;
+            default:
+                break;
         }
     };
 
