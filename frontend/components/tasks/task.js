@@ -42,6 +42,7 @@ const Task = ({task, onUpdate, onDelete}) => {
                     ></textarea>
                     <button onClick={handleUpdate} className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                         Save
+                    </button>
                     <button onClick={() => setIsEditing(false)} className="bg-gray-500 text-white px-4 py-2 rounded">
                         Cancel
                     </button>

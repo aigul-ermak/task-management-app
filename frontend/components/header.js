@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {useAuth} from "@/context/authContext";
 
 export default function Header() {
-    const { isAuthenticated, logout } = useAuth();
+    const {isAuthenticated, logout} = useAuth();
 
     return (
         <header className="bg-indigo-800 text-white py-4">
@@ -22,11 +22,16 @@ export default function Header() {
                                 </li>
                             </>
                         ) : (
-                            <li>
-                                <button onClick={logout} className="hover:underline">
-                                    Logout
-                                </button>
-                            </li>
+                            <>
+                                <li>
+                                    <Link href="/teams" className="hover:underline">Teams</Link>
+                                </li>
+                                <li>
+                                    <button onClick={logout} className="hover:underline">
+                                        Logout
+                                    </button>
+                                </li>
+                            </>
                         )}
                     </ul>
                 </nav>
